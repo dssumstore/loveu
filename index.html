@@ -48,6 +48,12 @@ button {
 #yesBtn { background:#ff4d6d; color:white; }
 #noBtn { background:#ccc; position:relative; }
 
+.circled {
+  border-radius: 50%;
+  padding: 15px 25px;
+  box-shadow: 0 0 0 4px pink;
+}
+
 #photo {
   display:none;
   margin-top:20px;
@@ -61,9 +67,15 @@ button {
   color:#c2185b;
 }
 
+#openText {
+  display:none;
+  margin-top:10px;
+  font-weight:bold;
+}
+
 #letter {
   display:none;
-  margin-top:15px;
+  margin-top:5px;
   cursor:pointer;
   width:120px;
 }
@@ -99,7 +111,7 @@ button {
 
 <div class="card" id="card">
   <h1>💖Gali, Will you be my Valentine? 💖</h1>
-  <p class="warning">You will see what happens when you press "NO" 😤</p>
+  <p class="warning" id="warningText">You will see what happens when you press "NO" 😤</p>
 
   <button id="yesBtn" onclick="yesClicked()">YES</button>
   <button id="noBtn" onclick="noClicked()">NO</button>
@@ -108,9 +120,10 @@ button {
 
   <img id="photo" src="us.jpg">
 
+  <div id="openText">Open me 💌</div>
   <img id="letter" src="letter.png" onclick="openLetter()">
+
   <div id="letterText">
-    <!-- WRITE YOUR MESSAGE HERE -->
     My love,<br><br>
 
     I know how many times you've hinted that I should ask you to be my Valentine.<br>
@@ -162,9 +175,19 @@ function yesClicked() {
   document.getElementById("message").innerText = "YAY!! I love you ❤️";
   document.getElementById("photo").style.display = "block";
   document.getElementById("letter").style.display = "inline";
+  document.getElementById("openText").style.display = "block";
+
   document.getElementById("song").play();
   confetti();
   setInterval(createHeart, 500);
+
+  // reset buttons
+  document.getElementById("yesBtn").style.transform = "scale(1)";
+  document.getElementById("noBtn").style.transform = "translate(0,0)";
+  document.getElementById("yesBtn").classList.add("circled");
+
+  // hide warning
+  document.getElementById("warningText").style.display = "none";
 }
 
 function createHeart() {
