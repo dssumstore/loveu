@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Important Question</title>
+  <style>
+    body {
+      text-align: center;
+      font-family: Arial, sans-serif;
+      background: pink;
+      margin-top: 50px;
+    }
+    #photo {
+      display: none;
+      margin-top: 20px;
+      max-width: 300px;
+      border-radius: 20px;
+    }
+    button {
+      font-size: 20px;
+      padding: 10px 20px;
+      margin: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💖Hi Gali, Will you be my Valentine? 💖</h1>
+
+  <button onclick="yesClicked()">YES</button>
+  <button onclick="noClicked()">NO</button>
+
+  <p id="message"></p>
+  <img id="photo" src="us.jpg">
+
+  <script>
+    function yesClicked() {
+      document.getElementById("message").innerText = "YAY!! I love you ❤️";
+      document.getElementById("photo").style.display = "block";
+    }
+
+    function noClicked() {
+      document.getElementById("message").innerText = "Wrong answer. Try again 😈";
+    }
+  </script>
+
+</body>
+</html>
