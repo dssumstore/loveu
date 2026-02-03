@@ -128,7 +128,7 @@ button {
 
     I know how many times you've hinted that I should ask you to be my Valentine.<br>
     You know I'm literally always on my laptop.. coding, working… boring stuff.<br>
-    So why not code my question to you?<br><br>
+    So why not code my question to you?😂<br><br>
     
     Jokes aside, I'm really glad you pressed “YES” (eventually).<br>
     That means you’re officially my Valentine. YAY. ❤️<br><br>
@@ -150,8 +150,9 @@ button {
 <script>
 let noCount = 0;
 let yesScale = 1;
+let heartsStarted = false; // 🔥 prevents spam
 const messages = [
-  "Here we go again",
+  "Here we go again..",
   "Try again.",
   "Are you sure?",
   "Buhr",
@@ -174,6 +175,9 @@ function noClicked() {
 }
 
 function yesClicked() {
+  if (heartsStarted) return; // ✅ only once
+  heartsStarted = true;
+
   document.getElementById("message").innerText = "YAY!! I love you ❤️";
   document.getElementById("photo").style.display = "block";
   document.getElementById("letter").style.display = "inline";
@@ -192,7 +196,7 @@ function yesClicked() {
 
   document.getElementById("warningText").style.display = "none";
 
-  setInterval(createHeart, 1200);
+  setInterval(createHeart, 1200); // subtle hearts
 }
 
 function createHeart() {
