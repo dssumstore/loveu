@@ -49,9 +49,9 @@ button {
 #noBtn { background:#ccc; position:relative; }
 
 .circled {
-  border-radius: 50%;
-  padding: 15px 25px;
-  box-shadow: 0 0 0 4px pink;
+  border-radius:50%;
+  padding:15px 25px;
+  box-shadow:0 0 0 4px pink;
 }
 
 #photo {
@@ -83,7 +83,7 @@ button {
 #letterText {
   display:none;
   margin-top:10px;
-  font-family: "Comic Sans MS", cursive;
+  font-family:"Comic Sans MS", cursive;
   background:#fff7f7;
   padding:15px;
   border-radius:10px;
@@ -94,7 +94,7 @@ button {
 .heart {
   position:absolute;
   bottom:-20px;
-  font-size:20px;
+  font-size:16px;
   animation: floatUp 4s linear forwards;
 }
 
@@ -151,14 +151,16 @@ button {
 let noCount = 0;
 let yesScale = 1;
 const messages = [
-  "Nice try 😏",
-  "Try Again.",
+  "Here we go again",
+  "Try again.",
   "Are you sure?",
   "Buhr",
   "JUST PRESS YES YOU IDIOT."
 ];
 
 function noClicked() {
+  if (document.getElementById("noBtn").disabled) return;
+
   noCount++;
   document.getElementById("message").innerText = messages[noCount % messages.length];
 
@@ -179,28 +181,31 @@ function yesClicked() {
 
   document.getElementById("song").play();
   confetti();
-  setInterval(createHeart, 500);
 
-  // reset buttons
   document.getElementById("yesBtn").style.transform = "scale(1)";
   document.getElementById("noBtn").style.transform = "translate(0,0)";
   document.getElementById("yesBtn").classList.add("circled");
 
-  // hide warning
+  document.getElementById("noBtn").disabled = true;
+  document.getElementById("noBtn").style.opacity = "0.5";
+  document.getElementById("noBtn").style.cursor = "not-allowed";
+
   document.getElementById("warningText").style.display = "none";
+
+  setInterval(createHeart, 1200);
 }
 
 function createHeart() {
   const heart = document.createElement("div");
   heart.className = "heart";
   heart.innerText = "❤️";
-  heart.style.left = Math.random()*100 + "%";
+  heart.style.left = Math.random()*80 + 10 + "%";
   document.getElementById("card").appendChild(heart);
   setTimeout(() => heart.remove(), 4000);
 }
 
 function confetti() {
-  for(let i=0;i<30;i++){
+  for(let i=0;i<12;i++){
     const heart = document.createElement("div");
     heart.className="heart";
     heart.innerText="🎉";
